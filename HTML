@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORC - Others Are Corrupting | Clothing Brand</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">ORC</div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#shop" class="nav-link">Shop</a></li>
+                <li><a href="#" class="nav-link cart-link" onclick="openCartModal()">Cart (<span id="cart-count">0</span>)</a></li>
+                <li id="auth-menu"><a href="#" class="nav-link" onclick="showLoginModal()">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>ORC Clothing</h1>
+            <p>Others Are Corrupting - Wear The Difference</p>
+            <button class="cta-button" onclick="scrollToShop()">Start Shopping</button>
+        </div>
+    </section>
+
+    <section id="shop" class="shop-section">
+        <div class="search-container">
+            <input type="text" id="search-input" class="search-bar" placeholder="Search collection..." onkeyup="filterProducts()">
+        </div>
+        <div id="products-container" class="products-grid"></div>
+    </section>
+
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('login-modal')">&times;</span>
+            <div class="auth-toggle">
+                <button id="toggle-login" class="toggle-btn active" onclick="showAuthForm('login')">Login</button>
+                <button id="toggle-signup" class="toggle-btn" onclick="showAuthForm('signup')">Sign Up</button>
+            </div>
+            <form id="login-form" class="auth-form active">
+                <input type="email" id="login-email" placeholder="Email" required class="input-field">
+                <input type="password" id="login-password" placeholder="Password" required class="input-field">
+                <button type="submit" class="auth-btn">Login</button>
+                <p id="login-error" class="error-message"></p>
+            </form>
+            <form id="signup-form" class="auth-form">
+                <input type="text" id="signup-name" placeholder="Full Name" required class="input-field">
+                <input type="email" id="signup-email" placeholder="Email" required class="input-field">
+                <input type="password" id="signup-password" placeholder="Password" required class="input-field">
+                <button type="submit" class="auth-btn">Create Account</button>
+                <p id="signup-error" class="error-message"></p>
+            </form>
+        </div>
+    </div>
+
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('cart-modal')">&times;</span>
+            <h2>Your Cart</h2>
+            <div id="cart-items-list"></div>
+            <div class="cart-summary">
+                <p>Total: $<span id="cart-total">0.00</span></p>
+                <button id="checkout-btn" class="checkout-btn" onclick="processCheckout()">Purchase Now</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="success-message" class="success-message"><p id="success-text"></p></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
