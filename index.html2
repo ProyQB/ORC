@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>ORC - Others Are Corrupting | Clothing Brand</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+</head>
+
+<body>
+
+  <nav class="navbar">
+
+    <div class="nav-container">
+
+      <div class="logo">ORC</div>
+
+      <ul class="nav-menu">
+
+        <li><a href="#home" class="nav-link">Home</a></li>
+
+        <li><a href="#shop" class="nav-link">Shop</a></li>
+
+        <li><a href="#cart-icon" class="nav-link cart-link">Cart <span id="cart-count">0</span></a></li>
+
+        <li id="auth-menu">
+
+          <a href="#login" class="nav-link" onclick="showLoginModal()">Login</a>
+
+        </li>
+
+      </ul>
+
+    </div>
+
+  </nav>
+
+
+
+  <section id="home" class="hero">
+
+    <div class="hero-content">
+
+      <h1>ORC Clothing</h1>
+
+      <p>Others Are Corrupting - Wear The Difference</p>
+
+      <button class="cta-button" onclick="scrollToShop()">Start Shopping</button>
+
+    </div>
+
+  </section>
+
+
+
+  <section class="search-section">
+
+    <div class="search-container">
+
+      <input type="text" id="search-input" class="search-bar" placeholder="Search hoodies, sweats, shirts..." onkeyup="filterProducts()">
+
+      <button class="search-btn" onclick="filterProducts()">Search</button>
+
+    </div>
+
+  </section>
+
+
+
+  <section id="shop" class="shop-section">
+
+    <h2>Our Collection</h2>
+
+    <div id="products-container" class="products-grid"></div>
+
+  </section>
+
+
+
+  <div id="cart-modal" class="modal">
+
+    <div class="modal-content">
+
+      <span class="close" onclick="closeCartModal()">&times;</span>
+
+      <h2>Shopping Cart</h2>
+
+      <div id="cart-items" class="cart-items"></div>
+
+      <div class="cart-summary">
+
+        <h3>Total: $<span id="cart-total">0.00</span></h3>
+
+        <button class="checkout-btn" onclick="proceedToCheckout()">Proceed to Checkout</button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div id="login-modal" class="modal">
+
+    <div class="modal-content">
+
+      <span class="close" onclick="closeLoginModal()">&times;</span>
+
+      <div class="auth-container">
+
+        <div class="auth-toggle">
+
+          <button class="toggle-btn active" onclick="showLogin()">Login</button>
+
+          <button class="toggle-btn" onclick="showSignup()">Sign Up</button>
+
+        </div>
+
+        <form id="login-form" class="auth-form active">
+
+          <h2>Login</h2>
+
+          <input type="email" id="login-email" placeholder="Email" required class="input-field">
+
+          <input type="password" id="login-password" placeholder="Password" required class="input-field">
+
+          <button type="submit" class="auth-btn">Login</button>
+
+          <p class="error-message" id="login-error"></p>
+
+        </form>
+
+        <form id="signup-form" class="auth-form">
+
+          <h2>Create Account</h2>
+
+          <input type="text" id="signup-name" placeholder="Full Name" required class="input-field">
+
+          <input type="email" id="signup-email" placeholder="Email" required class="input-field">
+
+          <input type="password" id="signup-password" placeholder="Password" required class="input-field">
+
+          <button type="submit" class="auth-btn">Sign Up</button>
+
+          <p class="error-message" id="signup-error"></p>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div id="checkout-modal" class="modal">
+
+    <div class="modal-content">
+
+      <span class="close" onclick="closeCheckoutModal()">&times;</span>
+
+      <h2>Checkout</h2>
+
+      <form id="checkout-form" class="checkout-form">
+
+        <div class="form-section">
+
+          <h3>Shipping Information</h3>
+
+          <input type="text" placeholder="Full Name" required class="input-field">
+
+          <input type="text" placeholder="Address" required class="input-field">
+
+        </div>
+
+        <div class="form-section">
+
+          <h3>Payment Information</h3>
+
+          <input type="text" placeholder="Card Number" maxlength="16" required class="input-field">
+
+        </div>
+
+        <div class="order-summary">
+
+          <p>Order Total: $<span id="checkout-total">0.00</span></p>
+
+        </div>
+
+        <button type="submit" class="submit-btn">Complete Purchase</button>
+
+      </form>
+
+    </div>
+
+  </div>
+
+
+
+  <div id="success-message" class="success-message">
+
+    <p id="success-text"></p>
+
+  </div>
+
+
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>
+
